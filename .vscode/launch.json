@@ -1,0 +1,40 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "OpenCVTest",
+            "request": "launch",
+            "mainClass": "OpenCVTest",
+            "projectName": "Robot With One Eye_fdf8a57"
+        },
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "Main",
+            "request": "launch",
+            "mainClass": "Main",
+            "projectName": "Robot With One Eye_fdf8a57"
+        },
+        {
+            "type": "java",
+            "name": "Launch OpenCV App",
+            "request": "launch",
+            "mainClass": "Main", 
+            "vmArgs": "-Djava.library.path=C:/opencv/build/bin",
+            "classPaths": [
+                "lib/opencv-4100.jar",
+                "bin"
+            ]
+
+        }
+    ]
+}

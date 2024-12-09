@@ -1,0 +1,67 @@
+ Project Plan: Motion Detection Using OpenCV and Java Swing
+
+This project integrates a graphical user interface (GUI) built with Java Swing and OpenCV to implement real-time motion detection. The planning is divided into three main stages:
+ 1. GUI Setup
+The project begins with a user-friendly graphical interface for interaction:
+- Components:
+   - A `JFrame` as the main window.
+   - `JLabel` for displaying the video feed (camera output).
+   - `JLabel` for showing the motion direction: Left, Center, or Right.
+   - Buttons:
+     - "Start Camera" to initialize the camera and motion detection.
+     - "Stop Camera" to terminate the camera feed.
+- Layout:
+   - `BorderLayout` is used to arrange:
+     - The camera view in the center.
+     - Motion direction label at the top.
+     - Control buttons at the bottom.
+ 2. Camera Integration Using OpenCV
+The OpenCV library is employed for real-time video capture and frame processing:
+- Camera Initialization:
+   - Open the default camera using `VideoCapture(0)`.
+   - Verify the camera connection.
+- Frame Handling:
+   - Read video frames continuously from the camera feed.
+   - Convert each frame from BGR (default color) to grayscale to simplify processing.
+   - Apply a Gaussian Blur to reduce noise in the frame.
+
+- Mat to BufferedImage Conversion:
+   - Convert OpenCV's `Mat` format to Java's `BufferedImage` for rendering in the GUI.
+ 3. Motion Detection Algorithm
+The algorithm identifies motion and determines its direction:
+1. Frame Difference:
+   - Compute the absolute difference between the previous frame and the current frame in grayscale.
+   - Threshold the difference to create a binary image, highlighting regions with significant changes (motion).
+2. Noise Removal:
+   - Apply dilation to fill small gaps and smooth out the detected motion regions.
+3. Motion Contours:
+   - Identify motion contours using `findContours()` in OpenCV.
+   - Filter out small areas (e.g., contours with less than 1500 pixels) to ignore insignificant motion.
+4. Centroid Calculation:
+   - Compute the horizontal position (`x-coordinate`) of the bounding rectangle's center for detected motion.
+5. Direction Determination:
+   - Divide the frame into three regions:
+     - Left: Motion centroid is in the left third of the frame.
+     - Center: Motion centroid is in the middle third of the frame.
+     - Right: Motion centroid is in the right third of the frame.
+   - Update the `directionLabel` to display the corresponding direction.
+
+6. Display Motion and Frame:
+   - Draw a bounding rectangle around the motion area.
+   - Render the updated video frame onto the GUI.
+ 4. Process Flow
+The program flow can be summarized as:
+1. User Action:
+   - Start the camera using the "Start Camera" button.
+2. Video Processing:
+   - Continuously capture and process video frames.
+   - Detect motion using frame differences.
+   - Determine and display motion direction.
+3. Stop Camera:
+   - Release the camera resources and stop video capture.
+ 5. Key Features
+- Real-time camera feed integrated into a GUI.
+- Efficient motion detection using OpenCV frame processing techniques.
+- Visual feedback with bounding rectangles for detected motion.
+- Clear direction indication based on the location of motion.
+This structured planning ensures smooth integration of GUI, camera, and motion detection logic, resulting in a robust and user-friendly motion detection application.
